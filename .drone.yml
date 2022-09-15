@@ -4,7 +4,7 @@ name: build
 
 steps:
   - name: build-jar 
-    image: java:8
+    image: maven:3.8.6-openjdk-18
    
 
 commands: 
