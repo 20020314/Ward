@@ -5,4 +5,4 @@ ENV PORT=5212 \
     GENERAL_SERVER_HOST=0.0.0.0
 COPY . /ward
 WORKDIR /ward
-CMD ["java","-jar","ward-2.1.9.jar"]
+CMD ["java","-jar","ward-*.jar"]
