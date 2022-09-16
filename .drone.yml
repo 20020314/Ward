@@ -1,7 +1,6 @@
 kind: pipeline
 type: docker
 name: build
-
 - name: 构建镜像
   image: plugins/docker
   volumes:
@@ -9,5 +8,5 @@ name: build
     path: /var/run/docker.sock
   settings:
     repo: lin
-    registry: registry
+    registry: https://hub.linmi.site/
     tags: ${DRONE_BUILD_NUMBER}
