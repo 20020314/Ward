@@ -1,0 +1,19 @@
+kind: pipeline
+type: docker
+name: build
+
+steps:
+  - name: 编译JAR 
+    image: dquintela/openjdk-8-jdk-alpine:latest   
+commands: 
+- mvn clean package
+
+- name: 构建镜像
+  image: plugins/docker
+  volumes:
+  - name: docker
+    path: /var/run/docker.sock
+  settings:
+    repo: lin
+    registry: registry
+    tags: ${DRONE_BUILD_NUMBER}
