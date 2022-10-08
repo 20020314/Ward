@@ -9,7 +9,7 @@ steps:
 
 steps:
 - name: 编译
-  image: openjdk:20-slim-buster
+  image: openjdk
   commands:
   - cd /drone/src/.git/
   - mvn clean package
