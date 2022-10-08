@@ -13,7 +13,7 @@ steps:
   - git clone https://github.com/20020314/ward.git
 
 - name: 编译
-  image: maven:3.8.6-openjdk-18-slim
+  image: maven
   volumes:
   - name: cache
     path: /jar
