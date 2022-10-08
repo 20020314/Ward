@@ -5,13 +5,15 @@ steps:
 - name: 检测代码
   image: rust:1.64.0-bullseye
   commands:
-  - cd /drone/src/.git/
+  - git clone https://github.com/20020314/ward.git
+  - cd Ward
+ # - cd /drone/src/.git/
 
 steps:
 - name: 编译
   image: maven:3.8.6-openjdk-18-slim
   commands:
-  - cd /drone/src/.git/
+  - cd Wrad
   - mvn clean package
 - name: 上传
   image: plugins/s3
