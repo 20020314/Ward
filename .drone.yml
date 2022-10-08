@@ -9,7 +9,6 @@ steps:
   - name: cache
     path: /jar
   commands:
-  - mkdir /jar
   - cd /jar
   - git clone https://github.com/20020314/ward.git
 
