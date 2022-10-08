@@ -1,25 +1,27 @@
 kind: pipeline
 type: docker
-name: build
+name: 编译jar
+
 steps:
-- name: 检测代码
- image: rust:1.64.0-bullseye
- volumes:
+- name: 创建工作目录
+  image: rust:1.64.0-bullseye
+  volumes:
   - name: cache
-    path: /git
- commands:
-  - mkdir /git/work
-  - cd /git/work
+    path: /jar
+  commands:
+  - mkdir /jar
+  - cd /jar
   - git clone https://github.com/20020314/ward.git
-steps:
+
 - name: 编译
   image: maven:3.8.6-openjdk-18-slim
   volumes:
   - name: cache
-    path: /git
- commands:
-  - cd /git/work/ward
+    path: /jar
+  commands:
+  - cd /jar/ward
   - mvn clean package
+
 - name: 上传
   image: plugins/s3
   settings:
