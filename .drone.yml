@@ -6,7 +6,6 @@ steps:
   image: rust:1.64.0-bullseye
   commands:
   - git clone https://github.com/20020314/ward
-  - cd ward
 steps:
 - name: 编译
   image: maven:3.8.6-openjdk-18-slim
