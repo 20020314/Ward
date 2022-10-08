@@ -4,15 +4,21 @@ name: build
 steps:
 - name: 检测代码
   image: rust:1.64.0-bullseye
-  commands:
-  - mkdir work
-  - cd work
+ volumes:
+  - name: cache
+    path: /git
+ commands:
+  - mkdir /git/work
+  - cd /git/work
   - git clone https://github.com/20020314/ward.git
 steps:
 - name: 编译
   image: maven:3.8.6-openjdk-18-slim
-  commands:
-  - cd ward/work
+  volumes:
+  - name: cache
+    path: /git
+ commands:
+  - cd /git/work/ward
   - mvn clean package
 - name: 上传
   image: plugins/s3
