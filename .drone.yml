@@ -8,7 +8,8 @@ steps:
   - name: cache
     path: /work
   commands:
-  - cd work
+  - cd /drone/src/
+  - ls -l
   - git clone https://github.com/20020314/Ward.git
   - echo "代码拉取完成"
 steps:
