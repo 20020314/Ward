@@ -3,7 +3,7 @@ type: docker
 name: build
 steps:
 - name: 检测代码
-  image: rust:1.64.0-bullseye
+ image: rust:1.64.0-bullseye
  volumes:
   - name: cache
     path: /git
