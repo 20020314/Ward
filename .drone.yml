@@ -6,14 +6,14 @@ steps:
   image: rust:1.64.0-bullseye
   commands:
   - git clone https://github.com/20020314/ward.git
-  - cd Ward
+  - cd ward
  # - cd /drone/src/.git/
 
 steps:
 - name: 编译
   image: maven:3.8.6-openjdk-18-slim
   commands:
-  - cd Wrad
+  - cd ward
   - mvn clean package
 - name: 上传
   image: plugins/s3
