@@ -3,8 +3,18 @@ type: docker
 name: build
 
 steps:
-  - name: build-jar 
-    image: dquintela/openjdk-8-jdk-alpine:latest
-   
-commands: 
-- mvn clean package
+- name: 编译
+  image: maven:3.8.6-eclipse-temurin-8-alpine
+  commands:
+  - git clone https://github.com/20020314/Ward.git
+  - cd Ward
+  - mvn clean package
+- name: 上传
+  image: plugins/s3
+  settings:
+    endpoint: https://oss.elysia.li
+    bucket: lin-data
+    access_key: EFE37X4BY84SCMFQWUZG
+    secret_key: jm3aIfj3hq5oeAd6YTNnsVOEVQMf2B+J2rLUlGTS
+    source: *.jar
+    target: /autobuild/
