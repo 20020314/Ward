@@ -19,8 +19,5 @@ steps:
     bucket: lin-data
     access_key: EFE37X4BY84SCMFQWUZG
     secret_key: jm3aIfj3hq5oeAd6YTNnsVOEVQMf2B+J2rLUlGTS
-    source: work/Ward/*.jar
+    source: /drone/src/.git/*.jar
     target: /autobuild/
-volumes:
-- name: cache
-  temp: {}
