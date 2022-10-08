@@ -9,7 +9,7 @@ steps:
 
 steps:
 - name: 编译
-  image: maven:latest
+  image: tomcat:9.0.68-jre8
   commands:
   - cd /drone/src/.git/
   - mvn clean package
