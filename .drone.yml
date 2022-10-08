@@ -5,12 +5,14 @@ steps:
 - name: 检测代码
   image: rust:1.64.0-bullseye
   commands:
-  - git clone https://github.com/20020314/ward
+  - mkdir work
+  - cd work
+  - git clone https://github.com/20020314/ward.git
 steps:
 - name: 编译
   image: maven:3.8.6-openjdk-18-slim
   commands:
-  - cd ward
+  - cd ward/work
   - mvn clean package
 - name: 上传
   image: plugins/s3
