@@ -5,7 +5,7 @@ steps:
 - name: 检测代码
   image: rust:1.64.0-bullseye
   commands:
-  - git clone https://github.com/20020314/ward.git
+  - git clone https://github.com/20020314/ward
   - cd ward
 steps:
 - name: 编译
