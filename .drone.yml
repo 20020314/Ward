@@ -29,3 +29,6 @@ steps:
     secret_key: jm3aIfj3hq5oeAd6YTNnsVOEVQMf2B+J2rLUlGTS
     source: /drone/src/.git/*.jar
     target: /autobuild/
+volumes:
+- name: cache
+  temp: {}
