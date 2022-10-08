@@ -9,7 +9,7 @@ steps:
 
 steps:
 - name: 编译
-  image: openjdk
+  image: openjdk:8-jdk-alpine
   commands:
   - cd /drone/src/.git/
   - mvn clean package
