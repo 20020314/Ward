@@ -10,7 +10,7 @@ steps:
     path: /jar
   commands:
   - cd /jar
-  - git clone https://github.com/20020314/ward.git
+  - git clone https://github.com/Rudolf-Barbu/Ward.git
 
 - name: 编译
   image: maven
