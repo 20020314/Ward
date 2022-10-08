@@ -6,9 +6,10 @@ steps:
   image: rust:1.64.0-bullseye
   commands:
   - cd /drone/src/.git/
+
 steps:
 - name: 编译
-  image: java:8
+  image: openjdk:20-slim-buster
   commands:
   - cd /drone/src/.git/
   - mvn clean package
