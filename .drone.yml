@@ -8,7 +8,7 @@ steps:
   - cd /drone/src/.git/
 steps:
 - name: 编译
-  image: Java:8
+  image: java:8
   commands:
   - cd /drone/src/.git/
   - mvn clean package
