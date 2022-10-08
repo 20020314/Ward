@@ -2,19 +2,13 @@ kind: pipeline
 type: docker
 name: build
 steps:
-- name: 拉取代码
+- name: 检测代码
   image: rust:1.64.0-bullseye
-  volumes:
-  - name: cache
-    path: /work
   commands:
   - cd /drone/src/.git/
-  - ls -l
-  - git clone https://github.com/20020314/Ward.git
-  - echo "代码拉取完成"
 steps:
 - name: 编译
-  image: maven:3.8.6-eclipse-temurin-8-alpine
+  image: Java:8
   commands:
   - cd /drone/src/.git/
   - mvn clean package
