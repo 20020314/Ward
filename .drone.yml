@@ -2,11 +2,20 @@ kind: pipeline
 type: docker
 name: build
 steps:
+- name: 拉取代码
+  image: rust:1.64.0-bullseye
+  volumes:
+  - name: cache
+    path: /work
+  commands:
+  - cd /work
+  - git clone https://github.com/20020314/Ward.git
+  - echo "代码拉取完成"
+steps:
 - name: 编译
   image: maven:3.8.6-eclipse-temurin-8-alpine
   commands:
-  - git clone https://github.com/20020314/Ward.git
-  - cd Ward
+  - cd /work/Ward
   - mvn clean package
 - name: 上传
   image: plugins/s3
@@ -15,5 +24,8 @@ steps:
     bucket: lin-data
     access_key: EFE37X4BY84SCMFQWUZG
     secret_key: jm3aIfj3hq5oeAd6YTNnsVOEVQMf2B+J2rLUlGTS
-    source: /*.jar
+    source: /work/Ward/*.jar
     target: /autobuild/
+volumes:
+- name: cache
+  temp: {}
