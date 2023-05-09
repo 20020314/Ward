@@ -1,20 +1,31 @@
-name: Drone CI
 kind: pipeline
 type: docker
+name: Java CI
 
 trigger:
-branch:
-- master
+  event:
+    - push
+    - pull_request
+  branch:
+    - main
+
+platform:
+  os: linux
+  arch: amd64
 
 steps:
-name: Checkout repository
-image: alpine/git
-commands:
-- git clone ${DRONE_REPO}
-- cd ${DRONE_REPO_NAME}
+  - name: Checkout
+    image: plugins/git
+    settings:
+      depth: 1
 
-name: Build with Java 11 and Ant
-image: adoptopenjdk/openjdk11:alpine
-commands:
-- apk add --no-cache ant
-- ant -noinput -buildfile build.xml
+  - name: Set up JDK 11
+    image: adoptopenjdk:11-jdk-hotspot
+    commands:
+      - export JAVA_HOME=/opt/java/openjdk
+      - export PATH=$JAVA_HOME/bin:$PATH
+
+  - name: Build with Ant
+    image: ant:1.10.9-jdk11
+    commands:
+      - ant -noinput -buildfile build.xml
